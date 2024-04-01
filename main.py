@@ -11,18 +11,24 @@ def get_mp3_files(directory):
 
 def set_album_info(mp3_file, album, cover_artist):
     audiofile = eyed3.load(mp3_file)
-    if audiofile.tag is None:
-        audiofile.initTag()
-    audiofile.tag.album = album
-    audiofile.tag.artist = cover_artist
-    audiofile.tag.save()
+    if audiofile is not None:
+        if audiofile.tag is None:
+            audiofile.initTag()
+        audiofile.tag.album = album
+        audiofile.tag.artist = cover_artist
+        audiofile.tag.save()
+    else:
+        print(f"Unable to load {mp3_file} as an audio file")
 
 def add_album_cover(mp3_file, album_cover):
     audiofile = eyed3.load(mp3_file)
-    if audiofile.tag is None:
-        audiofile.initTag()
-    audiofile.tag.images.set(3, open(album_cover, 'rb').read(), 'image/png')
-    audiofile.tag.save()
+    if audiofile is not None:
+        if audiofile.tag is None:
+            audiofile.initTag()
+        audiofile.tag.images.set(3, open(album_cover, 'rb').read(), 'image/png')
+        audiofile.tag.save()
+    else:
+        print(f"Unable to load {mp3_file} as an audio file")
 
 def main(directory, album, cover_artist):
     mp3_files = get_mp3_files(directory)
