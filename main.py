@@ -1,7 +1,5 @@
 import os
 import eyed3
-from mutagen.mp3 import MP3
-from mutagen.id3 import ID3, APIC
 
 def get_mp3_files(directory):
     mp3_files = []
@@ -20,17 +18,12 @@ def set_album_info(mp3_file, album, cover_artist):
     audiofile.tag.save()
 
 def add_album_cover(mp3_file, album_cover):
-    audio = MP3(mp3_file, ID3=ID3)
-    audio.tags.add(
-        APIC(
-            encoding=3,
-            mime="image/png",
-            type=3,
-            desc='Cover',
-            data=open(album_cover, mode='rb').read()
-        )
-    )
-    
+    audiofile = eyed3.load(mp3_file)
+    if audiofile.tag is None:
+        audiofile.initTag()
+    audiofile.tag.images.set(3, open(album_cover, 'rb').read(), 'image/png')
+    audiofile.tag.save()
+
 def main(directory, album, cover_artist):
     mp3_files = get_mp3_files(directory)
     album_cover = os.path.join(directory, "cover.png")
