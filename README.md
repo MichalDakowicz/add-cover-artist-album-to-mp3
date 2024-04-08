@@ -1,47 +1,42 @@
 # .mp3 Song Detail Adder
 
-This Python script is used to add album information and cover art to a collection of MP3 files within a specified directory. It utilizes the `eyed3` and `mutagen` libraries to manipulate the metadata of MP3 files.
+This Python script effectively adds album information and cover art to MP3 files in a given directory. It employs the `mutagen` library for seamless metadata handling.
 
 ## Prerequisites
 
 -   Python 3 ([https://www.python.org/downloads/](https://www.python.org/downloads/))
--   `eyed3` library: Install using `pip install eyed3`
+-   `mutagen` library: Install using `pip install mutagen`
 
 ## Usage
 
-1. **Prepare your MP3 files:** Place all the MP3 files that you want to update into a single directory.
-2. **Get the album cover:** Download or make the image for the album cover and name it "cover.png". Place this image file in the same directory as your MP3 files.
+1. **Prepare your MP3s:** Organize the MP3 files you wish to update within a single directory.
+2. **Get the album cover:** Download or create the album cover image and save it as "cover.png" in the same directory as your MP3 files.
 3. **Run the script:**
     - Open a terminal or command prompt.
-    - Navigate to the directory where you saved the Python script.
-    - Execute the script using the following command:
-
-```bash
-python main.py
-```
+    - Navigate to the directory containing the Python script.
+    - Execute the script: `python main.py`
 
 ## Script Explanation
 
--   **Import Statements:** Imports the `os` and `eyed3` libraries.
+-   **Imports:** Includes the `os` and `mutagen` libraries.
 -   **Functions:**
-    -   `get_mp3_files(directory)`: Scans the given directory to find all MP3 files.
-    -   `set_album_info(mp3_file, album, cover_artist)`: Uses `eyed3` to set the album name and artist information within the MP3 file's metadata.
-    -   `add_album_cover(mp3_file, album_cover)`: Uses `mutagen` to embed the "cover.png" image file as the album artwork.
+    -   `get_mp3_files(directory)`: Locates all MP3 files within the specified directory.
 -   **Main Execution (`if __name__ == "__main__":`)**
-    -   Prompts the user to enter the following:
-        -   The directory containing the MP3 files
-        -   The name of the cover artist
+    -   Prompts the user for:
+        -   Directory containing MP3 files (this will also be used as the album name)
+        -   The cover artist's name
     -   Calls the `main` function to process the files.
 
 ## How It Works
 
-1. The script asks you to input a directory and the cover artist's name.
-2. Locates all MP3 files within the provided directory.
-3. Extracts and uses the provided directory name as the album name.
-4. Updates the metadata of each MP3 file, setting the album and artist information.
-5. Embeds the "cover.png" file as the album artwork in each MP3 file.
+1. The script requests input for a directory and cover artist's name.
+2. It finds all MP3 files within the provided directory.
+3. The directory name is automatically used as the album name.
+4. The script updates each MP3 file's metadata, adding the album name and artists' information.
+5. It embeds the "cover.png" image as the album artwork.
 
-## Notes:
+## Important Notes
 
--   This script assumes the presence of a "cover.png" file in the same directory as the MP3 files. Make sure you have a suitable image ready.
--   The script automatically uses the directory name as the album name for all files.
+-   This script relies on a "cover.png" file present in the same directory as the MP3 files. Ensure you have the image ready.
+-   The embedded cover art should be visible on music players and platforms that support MP3 metadata, including Android devices and Spotify (on both Windows and Android).
+-   While extensive testing has been done, compatibility across all possible music players cannot be guaranteed.
