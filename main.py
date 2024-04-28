@@ -26,7 +26,7 @@ def main(directory, album, cover_artist):
         audio.tags.add(TPE1(encoding=3, text=cover_artist))
         audio.tags.add(TALB(encoding=3, text=album))
         audio.tags.add(TIT2(encoding=3, text=os.path.basename(mp3_file)[:-4]))  # Add song title
-        audio.save(v2_version=3)
+        audio.save(v2_version=3, v1=2)
         print("Added album cover, artist, album, and title to " + mp3_file)
 
 if __name__ == "__main__":
