@@ -1,4 +1,4 @@
-# .mp3 Song Detail Adder
+# .mp3 Song Tagger
 
 This Python script effectively adds album information and cover art to MP3 files in a given directory. It employs the `mutagen` library for seamless metadata handling.
 
